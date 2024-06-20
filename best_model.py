@@ -138,7 +138,7 @@ with st.expander('Test split', expanded=False):
 # Display model parameters
 st.header('Model parameters', divider='rainbow')
 parameters_col = st.columns(5)
-parameters_col[0].metric(label="Data split ratio (% for Training Set)", value=0.7, delta="")
+parameters_col[0].metric(label="Test size:", value=0.3, delta="")
 parameters_col[1].metric(label="Number of estimators (n_estimators)", value=xgb_model.get_params()['n_estimators'], delta="")
 parameters_col[2].metric(label="Max depth (max_depth)", value=xgb_model.get_params()['max_depth'], delta="")
 parameters_col[3].metric(label="Regularization alpha (reg_alpha)", value=xgb_model.get_params()['reg_alpha'], delta="")
