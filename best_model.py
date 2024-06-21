@@ -57,7 +57,7 @@ with open('best_gb_model.pkl', 'rb') as f:
 # Sidebar for accepting input parameters
 st.header('1.1. Input data')
 
-st.markdown('**1. Use custom data**')
+st.markdown('**1. Use our clean data**')
 df = pd.read_csv("https://raw.githubusercontent.com/ThuanLy-0092/HousePrice_Prediction_Project/main/clean_data.csv", index_col=False)
 
 sleep_time = 1
