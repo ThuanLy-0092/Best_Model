@@ -199,3 +199,14 @@ scatter = alt.Chart(df_filtered).mark_circle(size=60).encode(
     color=alt.Color('class', scale=color_scale)
 )
 st.altair_chart(scatter, theme='streamlit', use_container_width=True)
+
+# Display mis-predictions
+st.header('Mis-predictions', divider='rainbow')
+threshold = st.slider('Chọn ngưỡng sai số:', min_value=0.0, max_value=100.0, value=10.0, step=1.0)
+mis_predictions = df_filtered[np.abs(df_filtered['predicted'] - df_filtered['actual']) > threshold]
+
+if not mis_predictions.empty:
+    st.write(f"Hiển thị các mẫu dữ liệu có sai số dự đoán lớn hơn {threshold}:")
+    st.dataframe(mis_predictions)
+else:
+    st.write(f"Không có mẫu dữ liệu nào có sai số dự đoán lớn hơn {threshold}.")
