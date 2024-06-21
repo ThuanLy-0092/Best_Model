@@ -163,7 +163,6 @@ st.header('Feature importance', divider='rainbow')
 st.altair_chart(bars, theme='streamlit', use_container_width=True)
 
 # Prediction results
-st.header('Prediction results', divider='rainbow')
 s_y_train = pd.Series(y_train, name='actual').reset_index(drop=True)
 s_y_train_pred = pd.Series(y_train_pred, name='predicted').reset_index(drop=True)
 df_train = pd.DataFrame(data=[s_y_train, s_y_train_pred], index=None).T
@@ -176,12 +175,6 @@ df_test['class'] = 'test'
 
 df_prediction = pd.concat([df_train, df_test], axis=0)
 
-# Add a multiselect to choose which class to display
-class_selection = st.multiselect(
-    'Chọn lớp để hiển thị:',
-    options=['train', 'test'],
-    default=['train', 'test']
-)
 
 # Filter the dataframe based on the selected classes
 df_filtered = df_prediction[df_prediction['class'].isin(class_selection)]
@@ -192,6 +185,14 @@ st.altair_chart(bars, theme='streamlit', use_container_width=True)
 
 st.header('Prediction results', divider='rainbow')
 st.dataframe(df_filtered, height=320, use_container_width=True)
+
+
+# Add a multiselect to choose which class to display
+class_selection = st.multiselect(
+    'Chọn lớp để hiển thị:',
+    options=['train', 'test'],
+    default=['train', 'test']
+)
 
 scatter = alt.Chart(df_filtered).mark_circle(size=60).encode(
     x='actual',
