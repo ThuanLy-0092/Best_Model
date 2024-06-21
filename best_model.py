@@ -190,9 +190,12 @@ df_filtered = df_prediction[df_prediction['class'].isin(class_selection)]
 st.header('Prediction results', divider='rainbow')
 st.dataframe(df_filtered, height=320, use_container_width=True)
 
+# Define custom colors
+color_scale = alt.Scale(domain=['train', 'test'], range=['#1f77b4', '#ff7f0e'])  # You can replace these hex codes with your desired colors
+
 scatter = alt.Chart(df_filtered).mark_circle(size=60).encode(
     x='actual',
     y='predicted',
-    color='class'
+    color=alt.Color('class', scale=color_scale)
 )
 st.altair_chart(scatter, theme='streamlit', use_container_width=True)
