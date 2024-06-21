@@ -36,7 +36,7 @@ header {
 
 
 # Page title
-st.set_page_config(page_title='ML Model Building', page_icon='🤖')
+st.set_page_config(page_title='XG_Boost_Tuned', page_icon='🤖')
 st.markdown(hide_elements_css, unsafe_allow_html=True)
 st.title('XGBoost_tuned')
 
