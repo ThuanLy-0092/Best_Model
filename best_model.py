@@ -39,6 +39,7 @@ header {
 st.set_page_config(page_title='XG_Boost_Tuned', page_icon='machine-learning-logo.png')
 st.markdown(hide_elements_css, unsafe_allow_html=True)
 st.title('XGBoost_tuned')
+st.image("XGBoost_logo.png")
 
 st.sidebar.title("Giới thiệu")
 st.sidebar.markdown("""
