@@ -9,7 +9,7 @@ import time
 import zipfile
 import pickle
 from xgboost import XGBRegressor
-
+import plotly.express as px
 hide_elements_css = """
 <style>
 /* Ẩn biểu tượng GitHub và các lớp liên quan */
@@ -176,7 +176,7 @@ df_test['class'] = 'test'
 
 df_prediction = pd.concat([df_train, df_test], axis=0)
 
-# Add a selectbox to choose which class to display
+# Add a multiselect to choose which class to display
 class_selection = st.multiselect(
     'Chọn lớp để hiển thị:',
     options=['train', 'test'],
@@ -186,13 +186,11 @@ class_selection = st.multiselect(
 # Filter the dataframe based on the selected classes
 df_filtered = df_prediction[df_prediction['class'].isin(class_selection)]
 
-# Display prediction results and scatter plot in different containers
-st.header('Prediction results', divider='rainbow')
-st.dataframe(df_filtered, height=320, use_container_width=True)
-
-scatter = alt.Chart(df_filtered).mark_circle(size=60).encode(
-    x='actual',
-    y='predicted',
-    color='class'
+# Plot using Plotly
+fig = px.scatter(
+    df_filtered, x='actual', y='predicted',
+    color='class',
+    title='Prediction results'
 )
-st.altair_chart(scatter, theme='streamlit', use_container_width=True)
+
+st.plotly_chart(fig, use_container_width=True)
