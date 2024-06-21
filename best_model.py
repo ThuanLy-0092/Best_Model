@@ -176,14 +176,23 @@ df_test['class'] = 'test'
 
 df_prediction = pd.concat([df_train, df_test], axis=0)
 
-# Display prediction results and scatter plot in different containers
-st.container()
-st.dataframe(df_prediction, height=320, use_container_width=True)
+# Add a selectbox to choose which class to display
+class_selection = st.multiselect(
+    'Chọn lớp để hiển thị:',
+    options=['train', 'test'],
+    default=['train', 'test']
+)
 
-st.container()
-scatter = alt.Chart(df_prediction).mark_circle(size=60).encode(
-                x='actual',
-                y='predicted',
-                color='class'
-            )
+# Filter the dataframe based on the selected classes
+df_filtered = df_prediction[df_prediction['class'].isin(class_selection)]
+
+# Display prediction results and scatter plot in different containers
+st.header('Prediction results', divider='rainbow')
+st.dataframe(df_filtered, height=320, use_container_width=True)
+
+scatter = alt.Chart(df_filtered).mark_circle(size=60).encode(
+    x='actual',
+    y='predicted',
+    color='class'
+)
 st.altair_chart(scatter, theme='streamlit', use_container_width=True)
