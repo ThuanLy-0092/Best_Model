@@ -210,5 +210,9 @@ mis_predictions = df_filtered[np.abs(df_filtered['predicted'] - df_filtered['act
 if not mis_predictions.empty:
     st.write(f"Hiển thị các mẫu dữ liệu có sai số dự đoán lớn hơn {threshold}:")
     st.dataframe(mis_predictions)
+    
+    # Đếm số lượng mẫu dữ liệu mis-predictions
+    num_mis_predictions = mis_predictions.shape[0]
+    st.write(f"Tổng các mẫu dữ liệu có sai số dự đoán lớn hơn: {num_mis_predictions}")
 else:
     st.write(f"Không có mẫu dữ liệu nào có sai số dự đoán lớn hơn {threshold}.")
