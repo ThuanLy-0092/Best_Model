@@ -46,7 +46,9 @@ st.sidebar.markdown("""
 - **Lý Vĩnh Thuận**
 - **Nguyễn Nhựt Trường**
 - **Từ Thức**
-                    
+---
+
+Trang web sẽ hiển thị các thông số cần thiết cũng như hỗ trợ 1 số tính năng để check thử hiệu suất của mô hình tốt nhất của nhóm.
 """)
 # Load tuned XGBRegressor model from file
 with open('best_gb_model.pkl', 'rb') as f:
