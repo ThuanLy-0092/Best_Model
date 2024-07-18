@@ -213,6 +213,6 @@ if not mis_predictions.empty:
     
     # Đếm số lượng mẫu dữ liệu mis-predictions
     num_mis_predictions = mis_predictions.shape[0]
-    st.write(f"Tổng các mẫu dữ liệu có sai số dự đoán lớn hơn ngướng sai số: {num_mis_predictions}")
+    st.write(f"Tổng các mẫu dữ liệu có sai số dự đoán lớn hơn ngưỡng sai số: {num_mis_predictions}")
 else:
     st.write(f"Không có mẫu dữ liệu nào có sai số dự đoán lớn hơn {threshold}.")
